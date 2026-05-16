@@ -1,1 +1,54 @@
+/*
+===============================================================================
+Create Database and Schemas
+===============================================================================
+Script Purpose:
+    This script creates a new database named 'DataWarehouse' after checking if it already exists.
+    If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas
+    within the database: 'bronze', 'silver', and 'gold'.
+
+WARNING:
+    Running this script will drop the entire ' Feyifirst' database if it exists.
+    All data in the database will be permanently deleted. Proceed with caution
+    and ensure you have proper backups before running this script.
+*/
+
+USE master;
+GO
+
+-- Drop and recreate the ' Feyifirst' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = ' Feyifirst')
+BEGIN
+    ALTER DATABASE  Feyifirst SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+/*
+and ensure you have proper backups before running this script.
+*/
+
+USE master;
+GO
+
+-- Drop and recreate the ' Feyifirst' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = ' Feyifirst')
+BEGIN
+    ALTER DATABASE  Feyifirst SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE Feyifirst;
+END;
+GO
+
+-- Create the ' Feyifirst' database
+CREATE DATABASE  Feyifirst;
+GO
+
+USE  Feyifirst;
+GO
+
+-- Create Schemas
+CREATE SCHEMA bronze;
+GO
+
+CREATE SCHEMA silver;
+GO
+
+CREATE SCHEMA GOLD;
+GO
 
